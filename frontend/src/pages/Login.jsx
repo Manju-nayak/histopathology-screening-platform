@@ -54,7 +54,7 @@ const Login = () => {
       <div className="w-full max-w-5xl grid md:grid-cols-2 rounded-2xl overflow-hidden glass-panel shadow-2xl border border-white/5 hover:border-medical-primary/10 transition-all duration-500">
         
         {/* Left Side: Illustrative Platform Overview */}
-        <div className="p-12 bg-gradient-to-br from-violet-950/40 via-emerald-950/20 to-medical-dark flex flex-col justify-between border-r border-white/5 relative">
+        <div className="p-12 bg-gradient-to-br from-blue-950/40 via-cyan-950/20 to-medical-dark flex flex-col justify-between border-r border-white/5 relative">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-medical-primary/20 flex items-center justify-center border border-medical-primary/30">
               <Activity className="w-5 h-5 text-medical-primaryLight animate-pulse" />
