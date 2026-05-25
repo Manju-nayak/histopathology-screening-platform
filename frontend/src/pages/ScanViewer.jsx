@@ -82,8 +82,9 @@ const ScanViewer = () => {
   const confidencePercent = (scan.confidence * 100).toFixed(1);
 
   // Form final static URLs for image rendering
-  const originalImageUrl = `http://localhost:8000/${scan.image_path}`;
-  const heatmapImageUrl = `http://localhost:8000/${scan.heatmap_path}`;
+  const apiBaseURL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+  const originalImageUrl = `${apiBaseURL}/${scan.image_path}`;
+  const heatmapImageUrl = `${apiBaseURL}/${scan.heatmap_path}`;
 
   return (
     <div className="min-h-screen bg-[#05070c] py-8 print:py-0 font-sans">
