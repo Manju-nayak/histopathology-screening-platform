@@ -1,6 +1,11 @@
 import torch
+import gc
 from app.ai.preprocess import load_image, preprocess_image
 from app.ai.model_loader import load_model
+
+# Set PyTorch to use 1 CPU thread to avoid thread pool memory overhead
+torch.set_num_threads(1)
+torch.set_num_interop_threads(1)
 
 # Global cached model variable to avoid disk read overhead on every request
 _cached_model = None
@@ -22,7 +27,7 @@ def run_inference(image_path: str) -> dict:
 
     # 3. Retrieve model and run forward pass in evaluation mode (no gradients)
     model = get_model()
-    with torch.no_grad():
+    with torch.inference_mode():
         outputs = model(tensor)
         # Apply Softmax to convert raw logits to probabilities
         probabilities = torch.softmax(outputs, dim=1)[0]
@@ -33,6 +38,11 @@ def run_inference(image_path: str) -> dict:
     confidence = probabilities[class_idx].item()
 
     prediction_label = "Benign" if class_idx == 0 else "Malignant"
+
+    # Explicitly clear variables and invoke garbage collector to free memory immediately
+    del tensor
+    del outputs
+    gc.collect()
 
     return {
         "prediction": prediction_label,

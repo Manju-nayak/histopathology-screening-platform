@@ -1,9 +1,15 @@
 import os
+import gc
 import cv2
 import numpy as np
 import torch
 from app.ai.preprocess import load_image, preprocess_image
 from app.ai.inference import get_model
+
+# Set PyTorch and OpenCV to use 1 CPU thread to avoid thread pool memory overhead
+torch.set_num_threads(1)
+torch.set_num_interop_threads(1)
+cv2.setNumThreads(0)
 
 class GradCAM:
     """Helper class to register hooks and extract activations and gradients for Grad-CAM."""
@@ -68,13 +74,14 @@ def generate_gradcam_overlay(image_path: str, output_path: str, target_class_idx
     # In ResNet50, the last convolutional layer is model.layer4[-1]
     target_layer = model.layer4[-1]
     
-    # Ensure gradients are enabled for the parameters we are hooking
+    # Freeze parameters to save memory: Grad-CAM ONLY needs gradients w.r.t target layer activations, not model weights
     for param in model.parameters():
-        param.requires_grad = True
+        param.requires_grad = False
     
     # Load and preprocess image into a PyTorch tensor
     image = load_image(image_path)
     tensor = preprocess_image(image)
+    tensor.requires_grad = True # Enable grad tracking on input tensor to build the graph
     
     # Initialize extractor
     cam_extractor = GradCAM(model, target_layer)
@@ -113,5 +120,13 @@ def generate_gradcam_overlay(image_path: str, output_path: str, target_class_idx
     # Save the composite heatmap to disk
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     cv2.imwrite(output_path, overlay_image)
+    
+    # Explicitly clear variables and trigger garbage collection
+    del tensor
+    del cam
+    del img_bgr
+    del colored_heatmap
+    del overlay_image
+    gc.collect()
     
     return output_path

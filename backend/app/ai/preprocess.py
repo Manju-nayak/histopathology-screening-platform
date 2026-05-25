@@ -4,6 +4,9 @@ import numpy as np
 import torch
 from fastapi import HTTPException, status
 
+# Disable OpenCV multi-threading to conserve memory on resource-constrained instances
+cv2.setNumThreads(0)
+
 # Supported clinical image formats
 ALLOWED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".tiff"}
 
