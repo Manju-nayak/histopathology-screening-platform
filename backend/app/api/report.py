@@ -21,6 +21,11 @@ def get_report(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Clinical report with ID {id} not found."
         )
+    if current_user.role != "admin" and report.scan.patient.doctor_id != current_user.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Access denied: You do not have permission to view this report."
+        )
     return report
 
 @router.get("/scan/{scan_id}", response_model=ReportResponse)
@@ -35,5 +40,10 @@ def get_report_by_scan(
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Clinical report for scan ID {scan_id} not found."
+        )
+    if current_user.role != "admin" and report.scan.patient.doctor_id != current_user.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Access denied: You do not have permission to view this report."
         )
     return report

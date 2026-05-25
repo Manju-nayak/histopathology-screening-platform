@@ -20,7 +20,8 @@ def create_patient(
         full_name=patient_in.full_name,
         age=patient_in.age,
         gender=patient_in.gender,
-        medical_history=patient_in.medical_history
+        medical_history=patient_in.medical_history,
+        doctor_id=current_user.id
     )
     db.add(db_patient)
     db.commit()
@@ -33,7 +34,9 @@ def list_patients(
     current_user: User = Depends(get_current_user)
 ) -> List[Patient]:
     """Lists all patient records on the platform. Access restricted to logged-in users."""
-    return db.query(Patient).all()
+    if current_user.role == "admin":
+        return db.query(Patient).all()
+    return db.query(Patient).filter(Patient.doctor_id == current_user.id).all()
 
 @router.get("/{id}", response_model=PatientResponse)
 def get_patient(
@@ -47,5 +50,10 @@ def get_patient(
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Patient record with ID {id} not found."
+        )
+    if current_user.role != "admin" and patient.doctor_id != current_user.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Access denied: You do not have permission to view this patient."
         )
     return patient

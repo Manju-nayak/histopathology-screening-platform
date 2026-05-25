@@ -26,16 +26,15 @@ const Login = () => {
     if (isLogin) {
       const result = await login(email, password);
       if (result.success) {
-        navigate('/');
+        navigate('/dashboard');
       } else {
         setError(result.error);
       }
     } else {
       const result = await register(fullName, email, password, role);
       if (result.success) {
-        setSuccess('Clinician profile created successfully! Please sign in.');
+        setSuccess('Clinician profile created successfully! Please sign in with your credentials.');
         setIsLogin(true);
-        // Clean fields
         setPassword('');
       } else {
         setError(result.error);
@@ -45,13 +44,14 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-tr from-[#05070c] via-[#090e1a] to-[#121829] relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-tr from-[#05070c] via-[#090e1a] to-[#121829] relative overflow-hidden font-sans">
       {/* Decorative Blur Spheres for Glassmorphism */}
-      <div className="absolute w-[500px] h-[500px] rounded-full bg-medical-primary opacity-[0.03] blur-[100px] -top-52 -left-52" />
-      <div className="absolute w-[500px] h-[500px] rounded-full bg-medical-accent opacity-[0.03] blur-[100px] -bottom-52 -right-52" />
+      <div className="absolute w-[500px] h-[500px] rounded-full bg-medical-primary opacity-[0.04] blur-[110px] -top-40 -left-40 pointer-events-none" />
+      <div className="absolute w-[500px] h-[500px] rounded-full bg-medical-accent opacity-[0.04] blur-[110px] -bottom-40 -right-40 pointer-events-none" />
+      <div className="absolute w-[300px] h-[300px] rounded-full bg-medical-primary/20 opacity-[0.05] blur-[80px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
 
       {/* Main Glass Layout Container */}
-      <div className="w-full max-w-5xl grid md:grid-cols-2 rounded-2xl overflow-hidden glass-panel shadow-glass border border-white/5">
+      <div className="w-full max-w-5xl grid md:grid-cols-2 rounded-2xl overflow-hidden glass-panel shadow-2xl border border-white/5 hover:border-medical-primary/10 transition-all duration-500">
         
         {/* Left Side: Illustrative Platform Overview */}
         <div className="p-12 bg-gradient-to-br from-indigo-950/40 via-purple-950/20 to-medical-dark flex flex-col justify-between border-r border-white/5 relative">
@@ -60,7 +60,7 @@ const Login = () => {
               <Activity className="w-5 h-5 text-medical-primaryLight animate-pulse" />
             </div>
             <span className="font-display font-bold text-lg tracking-wide uppercase bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">
-              HistoAI
+              TumorTrace
             </span>
           </div>
 

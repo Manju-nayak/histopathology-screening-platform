@@ -19,6 +19,7 @@ class PatientCreate(PatientBase):
 
 class PatientResponse(PatientBase):
     id: int
+    doctor_id: Optional[int] = None
     created_at: datetime
 
     class Config:

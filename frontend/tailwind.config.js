@@ -12,13 +12,13 @@ export default {
       },
       colors: {
         medical: {
-          dark: '#05070c',       // Sleek almost-black background
-          panel: '#0e1322',      // Panels and cards
-          border: 'rgba(255, 255, 255, 0.06)',
-          primary: '#4f46e5',    // Indigo-600
-          primaryLight: '#6366f1',
-          accent: '#9333ea',     // Purple-600
-          accentLight: '#a855f7',
+          dark: 'var(--bg-color)',       // Sleek dynamic background
+          panel: 'var(--panel-color)',   // Dynamic panels and cards
+          border: 'var(--border-color)', // Dynamic border lines
+          primary: '#0d9488',    // Teal-600
+          primaryLight: '#14b8a6', // Teal-500
+          accent: '#0891b2',     // Cyan-600
+          accentLight: '#06b6d4', // Cyan-500
           success: '#059669',    // Emerald-600
           warning: '#d97706',    // Amber-600
           danger: '#dc2626',     // Red-600
@@ -26,7 +26,7 @@ export default {
       },
       boxShadow: {
         'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.5)',
-        'glow-primary': '0 0 20px 0 rgba(99, 102, 241, 0.15)',
+        'glow-primary': '0 0 20px 0 rgba(20, 184, 166, 0.15)',
         'glow-success': '0 0 20px 0 rgba(16, 185, 129, 0.15)',
         'glow-danger': '0 0 20px 0 rgba(239, 68, 68, 0.15)',
       }

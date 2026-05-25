@@ -60,13 +60,11 @@ export const AuthProvider = ({ children }) => {
       
       const payload = decodeToken(access_token);
       
-      // Since backend doesn't return full details, we estimate role from payload or email
-      // Seed details (real production apps fetch /users/me after this)
       const mockUserObj = {
         id: payload ? payload.sub : 99,
         email: email,
-        full_name: email.split('@')[0].replace('.', ' ').toUpperCase(),
-        role: email.includes('admin') ? 'admin' : 'doctor'
+        full_name: payload?.full_name || email.split('@')[0].replace('.', ' ').toUpperCase(),
+        role: payload?.role || (email.includes('admin') ? 'admin' : 'doctor')
       };
 
       localStorage.setItem('token', access_token);

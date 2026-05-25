@@ -20,7 +20,12 @@ def get_password_hash(password: str) -> str:
     hashed = bcrypt.hashpw(password.encode("utf-8"), salt)
     return hashed.decode("utf-8")
 
-def create_access_token(subject: Union[str, Any], expires_delta: timedelta = None) -> str:
+def create_access_token(
+    subject: Union[str, Any],
+    role: str = None,
+    full_name: str = None,
+    expires_delta: timedelta = None
+) -> str:
     """Generates a signed JWT access token containing the subject and expiration timestamp."""
     if expires_delta:
         expire = datetime.now(timezone.utc) + expires_delta
@@ -30,6 +35,11 @@ def create_access_token(subject: Union[str, Any], expires_delta: timedelta = Non
         )
     
     to_encode = {"exp": expire, "sub": str(subject)}
+    if role:
+        to_encode["role"] = role
+    if full_name:
+        to_encode["full_name"] = full_name
+
     encoded_jwt = jwt.encode(
         to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM
     )

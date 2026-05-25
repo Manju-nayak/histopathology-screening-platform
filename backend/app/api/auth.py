@@ -51,6 +51,13 @@ def login(login_credentials: UserLoginRequest, db: Session = Depends(get_db)) ->
             detail="Incorrect email or password credentials."
         )
 
-    # Generate JWT containing user ID as the subject
-    token = create_access_token(subject=user.id)
+    # Generate JWT containing user ID, role, and full name
+    token = create_access_token(subject=user.id, role=user.role, full_name=user.full_name)
     return {"access_token": token, "token_type": "bearer"}
+
+from app.core.auth import get_current_user
+
+@router.get("/me", response_model=UserResponse)
+def get_me(current_user: User = Depends(get_current_user)) -> User:
+    """Retrieves details of the currently authenticated user."""
+    return current_user
