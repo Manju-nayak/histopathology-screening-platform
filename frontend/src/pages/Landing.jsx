@@ -110,8 +110,8 @@ const Landing = () => {
             <div className="relative w-80 h-80 flex items-center justify-center">
               
               {/* Healthy cell */}
-              <div className="absolute top-16 left-20 w-12 h-12 rounded-full bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center animate-pulse">
-                <div className="w-4 h-4 rounded-full bg-indigo-500/40" />
+              <div className="absolute top-16 left-20 w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center animate-pulse">
+                <div className="w-4 h-4 rounded-full bg-emerald-500/40" />
               </div>
 
               {/* Malignant cell being scanned (Hotspot) */}
@@ -124,12 +124,12 @@ const Landing = () => {
               </div>
 
               {/* Saliency Grad-CAM Heatmap Blobs (Absolute positions) */}
-              <div className="absolute bottom-20 left-28 w-24 h-20 rounded-full bg-gradient-to-r from-purple-500/20 via-pink-500/15 to-red-500/25 blur-xl animate-pulse" />
+              <div className="absolute bottom-20 left-28 w-24 h-20 rounded-full bg-gradient-to-r from-violet-500/20 via-pink-500/15 to-red-500/25 blur-xl animate-pulse" />
               <div className="absolute bottom-24 right-28 w-14 h-14 rounded-full bg-gradient-to-tr from-yellow-500/15 to-red-500/20 blur-lg animate-pulse-slow" />
               
               {/* Mitotic Nucleus Spline */}
-              <div className="absolute bottom-24 left-32 w-14 h-14 rounded-full bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
-                <div className="w-5 h-8 rounded-full border border-indigo-400/40 rotate-45" />
+              <div className="absolute bottom-24 left-32 w-14 h-14 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                <div className="w-5 h-8 rounded-full border border-emerald-400/40 rotate-45" />
               </div>
             </div>
           </div>

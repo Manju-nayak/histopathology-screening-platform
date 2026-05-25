@@ -222,7 +222,7 @@ const Profile = () => {
                     {/* Glowing Progress bar */}
                     <div className="w-full h-3 rounded-full bg-slate-900 border border-white/5 overflow-hidden">
                       <div 
-                        className="h-full bg-gradient-to-r from-emerald-600 to-teal-400 rounded-full shadow-glow-success transition-all duration-1000"
+                        className="h-full bg-gradient-to-r from-emerald-600 to-emerald-400 rounded-full shadow-glow-success transition-all duration-1000"
                         style={{ width: `${stats.benignPercentage}%` }}
                       />
                     </div>

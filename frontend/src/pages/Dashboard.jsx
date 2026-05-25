@@ -202,7 +202,7 @@ const Dashboard = () => {
             </button>
             <button 
               onClick={() => setShowSettings(true)}
-              className="p-2 rounded-lg bg-white/5 border border-white/5 hover:border-medical-primary/30 hover:bg-medical-primary/10 text-slate-400 hover:text-indigo-400 transition-all cursor-pointer"
+              className="p-2 rounded-lg bg-white/5 border border-white/5 hover:border-medical-primary/30 hover:bg-medical-primary/10 text-slate-400 hover:text-medical-primaryLight transition-all cursor-pointer"
               title="Workstation Settings"
             >
               <Settings className="w-4 h-4" />
