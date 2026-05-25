@@ -31,6 +31,6 @@ backend/reports/*
 !backend/reports/.gitkeep
 
 # Large AI Model Weights
-backend/models/cancer_model.pth
+backend/models/
 backend/BreakHis/
 data/

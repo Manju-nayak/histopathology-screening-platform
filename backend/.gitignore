@@ -22,7 +22,7 @@ reports/*
 !reports/.gitkeep
 
 # Model weights
-models/cancer_model.pth
+models/
 BreakHis/
 
 # OS files

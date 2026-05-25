@@ -90,3 +90,6 @@ try:
     logger.info("Static file mounts are active for /uploads and /heatmaps.")
 except Exception as e:
     logger.error(f"Failed to mount static file system routes: {str(e)}")
+
+# Reload server to pick up new PyTorch weights
+
