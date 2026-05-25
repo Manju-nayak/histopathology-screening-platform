@@ -32,4 +32,5 @@ backend/reports/*
 
 # Large AI Model Weights
 backend/models/cancer_model.pth
+backend/BreakHis/
 data/

@@ -23,6 +23,7 @@ reports/*
 
 # Model weights
 models/cancer_model.pth
+BreakHis/
 
 # OS files
 .DS_Store
