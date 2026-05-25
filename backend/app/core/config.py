@@ -27,6 +27,7 @@ class Settings(BaseSettings):
 
     # AI Model & Local Directories
     MODEL_PATH: str = Field(default="models/cancer_model.pth")
+    PRELOAD_MODEL: bool = Field(default=True)
     UPLOAD_DIR: str = Field(default="uploads")
     HEATMAP_DIR: str = Field(default="heatmaps")
     REPORT_DIR: str = Field(default="reports")

@@ -3,20 +3,20 @@
 @tailwind utilities;
 
 :root {
-  --bg-color: #021B3A;
-  --panel-color: #052c54;
-  --border-color: rgba(79, 179, 255, 0.15);
-  --text-main: #F6FBFF;
-  --text-muted: #CDEAFE;
-  --glass-bg: rgba(2, 27, 58, 0.75);
+  --bg-color: #080a10;
+  --panel-color: #0f1322;
+  --border-color: rgba(99, 102, 241, 0.12);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --glass-bg: rgba(15, 19, 34, 0.75);
 }
 
 .light-theme {
-  --bg-color: #F6FBFF;
+  --bg-color: #f8fafc;
   --panel-color: #ffffff;
-  --border-color: rgba(6, 71, 137, 0.12);
-  --text-main: #021B3A;
-  --text-muted: #064789;
+  --border-color: rgba(99, 102, 241, 0.08);
+  --text-main: #0f172a;
+  --text-muted: #475569;
   --glass-bg: rgba(255, 255, 255, 0.8);
 }
 
@@ -41,8 +41,8 @@
 }
 
 .glass-panel-hover:hover {
-  border-color: rgba(79, 179, 255, 0.4);
-  box-shadow: 0 10px 30px 0 rgba(79, 179, 255, 0.12);
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 10px 30px 0 rgba(99, 102, 241, 0.1);
   transform: translateY(-2px);
 }
 
@@ -62,7 +62,7 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(79, 179, 255, 0.4);
+  background: rgba(99, 102, 241, 0.35);
 }
 
 /* Circular keyframe helper for model loads */

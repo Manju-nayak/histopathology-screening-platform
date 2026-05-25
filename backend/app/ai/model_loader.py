@@ -25,7 +25,6 @@ def get_resnet50_architecture() -> nn.Module:
 
 def load_model() -> nn.Module:
     """Loads ResNet50 classifier. Bootstraps base weights if file does not exist to ensure immediate runnability."""
-    model = get_resnet50_architecture()
     model_path = settings.model_file_path
 
     # Ensure parent folder exists (e.g. models/)
@@ -33,6 +32,7 @@ def load_model() -> nn.Module:
 
     if not model_path.exists():
         logger.warning(f"Model file not found at {model_path}. Bootstrapping base weights...")
+        model = get_resnet50_architecture()
         try:
             # Save the newly created model architecture states to seed the path
             torch.save(model.state_dict(), str(model_path))
@@ -41,11 +41,18 @@ def load_model() -> nn.Module:
             logger.error(f"Failed to write bootstrap model file: {str(e)}")
     else:
         try:
+            # Instantiate empty model structure first to save memory overhead
+            model = resnet50(weights=None)
+            in_features = model.fc.in_features
+            model.fc = nn.Linear(in_features, 2)
+            
             # Load weights onto CPU (safest fallback for development machines without high-end GPUs)
             model.load_state_dict(torch.load(str(model_path), map_location=torch.device("cpu")))
             logger.info(f"Successfully loaded model weights from: {model_path}")
         except Exception as e:
             logger.error(f"Error loading model weights from {model_path}: {str(e)}. Using base weights instead.")
+            # Fallback to base weights architecture
+            model = get_resnet50_architecture()
     
     # Put model in evaluation mode to disable Dropout / BatchNorm updating
     model.eval()

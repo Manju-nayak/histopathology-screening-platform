@@ -124,7 +124,7 @@ const Landing = () => {
               </div>
 
               {/* Saliency Grad-CAM Heatmap Blobs (Absolute positions) */}
-              <div className="absolute bottom-20 left-28 w-24 h-20 rounded-full bg-gradient-to-r from-[#4FB3FF]/20 via-[#064789]/15 to-red-500/25 blur-xl animate-pulse" />
+              <div className="absolute bottom-20 left-28 w-24 h-20 rounded-full bg-gradient-to-r from-[#6366f1]/20 via-[#10b981]/15 to-red-500/25 blur-xl animate-pulse" />
               <div className="absolute bottom-24 right-28 w-14 h-14 rounded-full bg-gradient-to-tr from-yellow-500/15 to-red-500/20 blur-lg animate-pulse-slow" />
               
               {/* Mitotic Nucleus Spline */}

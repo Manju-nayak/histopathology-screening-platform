@@ -1,3 +1,4 @@
+import os
 import logging
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
@@ -43,12 +44,16 @@ async def lifespan(app: FastAPI):
         logger.critical(f"Lifespan: Critical error initializing database: {str(e)}")
 
     # 3. Pre-load AI ResNet50 weights to avoid loading overhead on the first /predict request
-    try:
-        logger.info("Lifespan: Pre-loading ResNet50 classifier model weights...")
-        get_model()
-        logger.info("Lifespan: AI Model is successfully loaded in RAM and cached.")
-    except Exception as e:
-        logger.error(f"Lifespan: Failed pre-loading AI weights: {str(e)}")
+    # Skip preloading on Render or when PRELOAD_MODEL is explicitly disabled to fit under 512MB RAM limit.
+    if settings.PRELOAD_MODEL and os.getenv("RENDER") != "true":
+        try:
+            logger.info("Lifespan: Pre-loading ResNet50 classifier model weights...")
+            get_model()
+            logger.info("Lifespan: AI Model is successfully loaded in RAM and cached.")
+        except Exception as e:
+            logger.error(f"Lifespan: Failed pre-loading AI weights: {str(e)}")
+    else:
+        logger.info("Lifespan: Skip pre-loading model weights (lazy loading active to optimize memory).")
 
     logger.info("==========================================================")
     logger.info("        PLATFORM BACKEND API SERVICE IS RUNNING")
