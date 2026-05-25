@@ -1,0 +1,35 @@
+# System and Cache Files
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Node.js / React Dependencies & Builds
+node_modules/
+dist/
+build/
+.eslintcache
+
+# Python Environments
+.env
+.venv/
+venv/
+ENV/
+
+# Local database migrations / alembic caches
+.pytest_cache/
+.mypy_cache/
+
+# Local Medical Slide storage & heatmaps (ignore data uploads)
+backend/uploads/*
+!backend/uploads/.gitkeep
+backend/heatmaps/*
+!backend/heatmaps/.gitkeep
+backend/reports/*
+!backend/reports/.gitkeep
+
+# Large AI Model Weights
+backend/models/cancer_model.pth
+data/

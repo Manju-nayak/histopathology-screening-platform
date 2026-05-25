@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-medical-dark text-[#f8fafc] font-sans antialiased;
+  }
+}
+
+/* High-fidelity glassmorphism panel style */
+.glass-panel {
+  background: rgba(14, 19, 34, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Premium transition response on mouse actions */
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel-hover:hover {
+  border-color: rgba(99, 102, 241, 0.25);
+  box-shadow: 0 10px 30px 0 rgba(99, 102, 241, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Custom styled scrollbars for clinical lists */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(14, 19, 34, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.3);
+}
+
+/* Circular keyframe helper for model loads */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.02);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}

@@ -1,0 +1,29 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# Environments
+.env
+.venv/
+venv/
+ENV/
+
+# Local data storage directories
+# Ignore files inside these directories but keep directories
+uploads/*
+!uploads/.gitkeep
+heatmaps/*
+!heatmaps/.gitkeep
+reports/*
+!reports/.gitkeep
+
+# Model weights
+models/cancer_model.pth
+
+# OS files
+.DS_Store
+Thumbs.db
